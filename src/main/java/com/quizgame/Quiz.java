@@ -11,18 +11,18 @@ public class Quiz implements ActionListener {
     
     //1d array of questions
     String[] questions = {
-                            "Which company created Java?",
-                            "Which year was Java created?",
-                            "What was Java originally called?",
-                            "Who is credited with creating Java?"
+                            "What is my name?",
+                            "What school do I go to?",
+                            "How do I like my pizza?",
+                            "What is my favorite programming language?"
     };
 
     //2d array of options for answers (array of arrays)
     String[][] options = {
-                            {"Sun Microsystems", "Starbucks", "Microsoft", "Alphabet"},
-                            {"1989", "1996", "1992", "1976"},
-                            {"Apple", "Latte", "Oak", "Koffing"},
-                            {"Steve Jobs", "Bill Gates", "Dennis Ritchie", "James Gosling"}
+                            {"Nick Kelley", "Mark Zuckerburg", "Bill Gates", "Nik Kelly"},
+                            {"U of M", "Metro State", "Harvard", "MIT"},
+                            {"Pepperoni", "Sausage", "Cheese", "Hawaiian"},
+                            {"JavaScript", "Kotlin", "Python", "Java"}
     };
 
     //1d array of characters or strings to hold all the correct answers
