@@ -66,17 +66,12 @@ public class Quiz implements ActionListener {
     //By not declaring the above variables in the constructor yet in the class, they essentially act as global variables.
     //So they can be accessed and changed anywhere, which we will be doing.
 
-    //timer setup
-    Timer timer = new Timer(1000, new ActionListener() { //have it execute each second
-
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            seconds--; //decrement by 1 after each second
-            secondsLeft.setText(String.valueOf(seconds)); //update timer with decrement
-            if (seconds == 0) { //check for timer runout
-                displayAnswer(); //you'd have gotten the question wrong then
-            }
+    //timer setup - as lambda
+    Timer timer = new Timer(1000, e -> { // 'e' is the ActionEvent Parameter
+        seconds--; //decrement seconds every second
+        secondsLeft.setText(String.valueOf(seconds)); //display seconds remaining
+        if (seconds == 0) { //when seconds run out
+            displayAnswer();
         }
     });
 
@@ -326,29 +321,23 @@ public class Quiz implements ActionListener {
 
         //before next question, revert the colors
         //but need to time it so its not showing red on the next question
-        Timer pause = new Timer(2000, new ActionListener() {  //named pause cause its timing it before next question
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                //change answers back to green
-                answerLabelA.setForeground(new Color(25,255,0));
-                answerLabelB.setForeground(new Color(25,255,0));
-                answerLabelC.setForeground(new Color(25,255,0));
-                answerLabelD.setForeground(new Color(25,255,0));
+        Timer pause = new Timer(2000, e -> {
+            //change answers back to green
+            answerLabelA.setForeground(new Color(25,255,0));
+            answerLabelB.setForeground(new Color(25,255,0));
+            answerLabelC.setForeground(new Color(25,255,0));
+            answerLabelD.setForeground(new Color(25,255,0));
                 
-                //reset answer
-                answer = ' ';
-                seconds = 10;
-                secondsLeft.setText(String.valueOf(seconds));
-                buttonA.setEnabled(true);
-                buttonB.setEnabled(true);
-                buttonC.setEnabled(true);
-                buttonD.setEnabled(true);
-                index++;
-                nextQuestion();
+            //reset answer
+            answer = ' ';
+            seconds = 10;
+            secondsLeft.setText(String.valueOf(seconds));
+            buttonA.setEnabled(true);                buttonB.setEnabled(true);
+            buttonC.setEnabled(true);
+            buttonD.setEnabled(true);
+            index++;
+            nextQuestion();
 
-            }
         });
         //only want timer to activate once, so call method to help:
         pause.setRepeats(false); //only executes once then
