@@ -36,8 +36,8 @@ public class Quiz implements ActionListener {
     char guess; //will hold our guess
     char answer; //will hold the correct answer
     int index; //index
-    int correct_guesses = 0; //correct guesses
-    int total_questions = questions.length; //will dynamically change with number of questions in array
+    int correctGuesses = 0; //correct guesses
+    int totalQuestions = questions.length; //will dynamically change with number of questions in array
     int result; //integer to hold result
     int seconds = 10; //will give a 10 second count down to guess answer
 
@@ -97,7 +97,7 @@ public class Quiz implements ActionListener {
         textfield.setBounds(0,0, 650, 50 ); //x = 0, y = 0, 650px width, 50px height
         textfield.setBackground(new Color(25,25,25)); //background color (blackish)
         textfield.setForeground(new Color(25,255,0)); //text color (greenish)
-        textfield.setFont(new Font("MV Boli", Font.BOLD, 30)); //font style and such
+        textfield.setFont(new Font("HonMincho", Font.BOLD, 30)); //font style and such
         textfield.setBorder(BorderFactory.createBevelBorder(1)); //border style recommendation
         textfield.setHorizontalAlignment(JTextField.CENTER); //align it center (you can change this)
         textfield.setEditable(false); //set false because I don't want people to edit it.
@@ -108,35 +108,35 @@ public class Quiz implements ActionListener {
         textarea.setWrapStyleWord(true); //wraps at the word boundaries according to style
         textarea.setBackground(new Color(25,25,25));
         textarea.setForeground(new Color(25,255,0));
-        textarea.setFont(new Font("MV Boli", Font.BOLD, 25));
+        textarea.setFont(new Font("HonMincho", Font.BOLD, 25));
         textarea.setBorder(BorderFactory.createBevelBorder(1));
         //cant align text areas
         textarea.setEditable(false); //Don't want people to edit it.
 
         //Button A
         buttonA.setBounds(0, 100, 100, 100);
-        buttonA.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonA.setFont(new Font("HonMincho", Font.BOLD, 35));
         buttonA.setFocusable(false); //make it so button aint highlighted
         buttonA.addActionListener(this);
         buttonA.setText("A"); //set Button text
 
         //Button B
         buttonB.setBounds(0, 200, 100, 100);
-        buttonB.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonB.setFont(new Font("HonMincho", Font.BOLD, 35));
         buttonB.setFocusable(false);
         buttonB.addActionListener(this);
         buttonB.setText("B");
 
         //Button C
         buttonC.setBounds(0, 300, 100, 100);
-        buttonC.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonC.setFont(new Font("HonMincho", Font.BOLD, 35));
         buttonC.setFocusable(false);
         buttonC.addActionListener(this);
         buttonC.setText("C");
 
         //Button D
         buttonD.setBounds(0, 400, 100, 100);
-        buttonD.setFont(new Font("MV Boli", Font.BOLD, 35));
+        buttonD.setFont(new Font("HonMincho", Font.BOLD, 35));
         buttonD.setFocusable(false);
         buttonD.addActionListener(this);
         buttonD.setText("D");
@@ -147,34 +147,34 @@ public class Quiz implements ActionListener {
         answer_labelA.setBounds(125, 100, 500, 100);
         answer_labelA.setBackground(new Color(50, 50, 50));
         answer_labelA.setForeground(new Color(25,255,0));
-        answer_labelA.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answer_labelA.setFont(new Font("HonMincho", Font.PLAIN, 35));
 
 
         //answer_labelB
         answer_labelB.setBounds(125, 200, 500, 100);
         answer_labelB.setBackground(new Color(50, 50, 50));
         answer_labelB.setForeground(new Color(25,255,0));
-        answer_labelB.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answer_labelB.setFont(new Font("HonMincho", Font.PLAIN, 35));
 
 
         //answer_labelC
         answer_labelC.setBounds(125, 300, 500, 100);
         answer_labelC.setBackground(new Color(50, 50, 50));
         answer_labelC.setForeground(new Color(25,255,0));
-        answer_labelC.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answer_labelC.setFont(new Font("HonMincho", Font.PLAIN, 35));
 
 
         //answer_labelD
         answer_labelD.setBounds(125, 400, 500, 100);
         answer_labelD.setBackground(new Color(50, 50, 50));
         answer_labelD.setForeground(new Color(25,255,0));
-        answer_labelD.setFont(new Font("MV Boli", Font.PLAIN, 35));
+        answer_labelD.setFont(new Font("HonMincho", Font.PLAIN, 35));
 
         //timer for seconds
         seconds_left.setBounds(535,510,100,100); //100x100 is a box
         seconds_left.setBackground(new Color(25,25,25));
         seconds_left.setForeground(new Color(255,0,0)); //red Foreground
-        seconds_left.setFont(new Font("Ink Free", Font.BOLD, 60));
+        seconds_left.setFont(new Font("Dialog", Font.BOLD, 60));
         seconds_left.setBorder(BorderFactory.createBevelBorder(1));
         seconds_left.setOpaque(true);
         seconds_left.setHorizontalAlignment(JTextField.CENTER);
@@ -184,16 +184,16 @@ public class Quiz implements ActionListener {
         time_label.setBounds(535, 472, 100, 25);
         time_label.setBackground(new Color (50,50,50)); //matches frame color
         time_label.setForeground(new Color(255,0,0));
-        time_label.setFont(new Font("MV Boli", Font.PLAIN, 16));
+        time_label.setFont(new Font("Dialog", Font.PLAIN, 16));
         time_label.setHorizontalAlignment(JTextField.CENTER);
-        time_label.setText("Timer >:D");
+        time_label.setText("Timer");
 
         //display number correct
         //(wont be visible right away, only after)
         number_right.setBounds(225, 225, 200, 100);
         number_right.setBackground(new Color(25,25,25));
         number_right.setForeground(new Color(25,255,0));
-        number_right.setFont(new Font("Ink Free", Font.BOLD, 50)); //will want a big size for results
+        number_right.setFont(new Font("Dialog", Font.BOLD, 50)); //will want a big size for results
         number_right.setBorder(BorderFactory.createBevelBorder(1));
         number_right.setHorizontalAlignment(JTextField.CENTER);
         number_right.setEditable(false); //definitely don't want folks cheating
@@ -202,7 +202,7 @@ public class Quiz implements ActionListener {
         percentage.setBounds(225,325, 200, 100);
         percentage.setBackground(new Color(25,25,25));
         percentage.setForeground(new Color(25,255,0));
-        percentage.setFont(new Font("Ink Free", Font.BOLD, 50));
+        percentage.setFont(new Font("Dialog", Font.BOLD, 50));
         percentage.setBorder(BorderFactory.createBevelBorder(1));
         percentage.setHorizontalAlignment(JTextField.CENTER);
         percentage.setEditable(false);
@@ -233,7 +233,7 @@ public class Quiz implements ActionListener {
     //method to move to the next question
     public void nextQuestion() {
         
-        if (index >= total_questions) { //if we've finished, show the results
+        if (index >= totalQuestions) { //if we've finished, show the results
             results();
         } else {
 
@@ -264,7 +264,7 @@ public class Quiz implements ActionListener {
         if (e.getSource() == buttonA) {
             answer = 'A'; //make sure its in double quotes if I do strings.
             if (answer == answers[index]) {
-                correct_guesses++;
+                correctGuesses++;
             }
         }
 
@@ -272,7 +272,7 @@ public class Quiz implements ActionListener {
         if (e.getSource() == buttonB) {
             answer = 'B';
             if (answer == answers[index]) {
-                correct_guesses++;
+                correctGuesses++;
             }
         }
 
@@ -280,7 +280,7 @@ public class Quiz implements ActionListener {
         if (e.getSource() == buttonC) {
             answer = 'C';
             if (answer == answers[index]) {
-                correct_guesses++;
+                correctGuesses++;
             }
         }
 
@@ -288,7 +288,7 @@ public class Quiz implements ActionListener {
         if (e.getSource() == buttonD) {
             answer = 'D';
             if (answer == answers[index]) {
-                correct_guesses++;
+                correctGuesses++;
             }
         }
 
@@ -366,7 +366,7 @@ public class Quiz implements ActionListener {
         buttonD.setEnabled(false);
 
 
-        result = (int)((correct_guesses / (double)total_questions) * 100); //casted as integer so no decimal will be shown
+        result = (int)((correctGuesses / (double)totalQuestions) * 100); //casted as integer so no decimal will be shown
 
         textfield.setText("Results!");
 
@@ -378,7 +378,7 @@ public class Quiz implements ActionListener {
         answer_labelD.setText("");
 
         //show how much we got right
-        number_right.setText("(" + correct_guesses + "/" + total_questions + ")");
+        number_right.setText("(" + correctGuesses + "/" + totalQuestions + ")");
         percentage.setText(result + "%");
 
         //add to frame
