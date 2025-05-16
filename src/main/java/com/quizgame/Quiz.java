@@ -41,6 +41,10 @@ public class Quiz implements ActionListener {
     int result; //integer to hold result
     int seconds = 10; //will give a 10 second count down to guess answer
 
+    //custom fonts
+    String fontHM = "HonMincho";
+    String fontD = "Dialog";
+
 
     //GUI component initialization
     JFrame frame = new JFrame(); //JFrame to hold everything
@@ -66,17 +70,12 @@ public class Quiz implements ActionListener {
     //By not declaring the above variables in the constructor yet in the class, they essentially act as global variables.
     //So they can be accessed and changed anywhere, which we will be doing.
 
-    //timer setup
-    Timer timer = new Timer(1000, new ActionListener() { //have it execute each second
-
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            seconds--; //decrement by 1 after each second
-            secondsLeft.setText(String.valueOf(seconds)); //update timer with decrement
-            if (seconds == 0) { //check for timer runout
-                displayAnswer(); //you'd have gotten the question wrong then
-            }
+    //timer setup - as lambda
+    Timer timer = new Timer(1000, e -> { // 'e' is the ActionEvent Parameter
+        seconds--; //decrement seconds every second
+        secondsLeft.setText(String.valueOf(seconds)); //display seconds remaining
+        if (seconds == 0) { //when seconds run out
+            displayAnswer();
         }
     });
 
@@ -85,7 +84,7 @@ public class Quiz implements ActionListener {
     public Quiz() {
 
         //begin with frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //a.k.a (JFrame.EXIT_ON_CLOSE)
         frame.setSize(650,650); //decent size to start with, can change.
         frame.getContentPane().setBackground(new Color(50,50,50)); //gives the nice greyish background
 
@@ -97,9 +96,10 @@ public class Quiz implements ActionListener {
         textfield.setBounds(0,0, 650, 50 ); //x = 0, y = 0, 650px width, 50px height
         textfield.setBackground(new Color(25,25,25)); //background color (blackish)
         textfield.setForeground(new Color(25,255,0)); //text color (greenish)
-        textfield.setFont(new Font("HonMincho", Font.BOLD, 30)); //font style and such
+        textfield.setFont(new Font(fontHM, Font.BOLD, 30)); //font style and such
         textfield.setBorder(BorderFactory.createBevelBorder(1)); //border style recommendation
-        textfield.setHorizontalAlignment(JTextField.CENTER); //align it center (you can change this)
+        //textfield.setHorizontalAlignment(JTextField.CENTER); //align it center (changeable)
+        textfield.setHorizontalAlignment(javax.swing.SwingConstants.CENTER); //sonarquube telling me to fix :/
         textfield.setEditable(false); //set false because I don't want people to edit it.
 
         //copy textfield, set up to display the question (is a textarea now)
@@ -108,35 +108,35 @@ public class Quiz implements ActionListener {
         textarea.setWrapStyleWord(true); //wraps at the word boundaries according to style
         textarea.setBackground(new Color(25,25,25));
         textarea.setForeground(new Color(25,255,0));
-        textarea.setFont(new Font("HonMincho", Font.BOLD, 25));
+        textarea.setFont(new Font(fontHM, Font.BOLD, 25));
         textarea.setBorder(BorderFactory.createBevelBorder(1));
         //cant align text areas
         textarea.setEditable(false); //Don't want people to edit it.
 
         //Button A
         buttonA.setBounds(0, 100, 100, 100);
-        buttonA.setFont(new Font("HonMincho", Font.BOLD, 35));
+        buttonA.setFont(new Font(fontHM, Font.BOLD, 35));
         buttonA.setFocusable(false); //make it so button aint highlighted
         buttonA.addActionListener(this);
         buttonA.setText("A"); //set Button text
 
         //Button B
         buttonB.setBounds(0, 200, 100, 100);
-        buttonB.setFont(new Font("HonMincho", Font.BOLD, 35));
+        buttonB.setFont(new Font(fontHM, Font.BOLD, 35));
         buttonB.setFocusable(false);
         buttonB.addActionListener(this);
         buttonB.setText("B");
 
         //Button C
         buttonC.setBounds(0, 300, 100, 100);
-        buttonC.setFont(new Font("HonMincho", Font.BOLD, 35));
+        buttonC.setFont(new Font(fontHM, Font.BOLD, 35));
         buttonC.setFocusable(false);
         buttonC.addActionListener(this);
         buttonC.setText("C");
 
         //Button D
         buttonD.setBounds(0, 400, 100, 100);
-        buttonD.setFont(new Font("HonMincho", Font.BOLD, 35));
+        buttonD.setFont(new Font(fontHM, Font.BOLD, 35));
         buttonD.setFocusable(false);
         buttonD.addActionListener(this);
         buttonD.setText("D");
@@ -147,45 +147,45 @@ public class Quiz implements ActionListener {
         answerLabelA.setBounds(125, 100, 500, 100);
         answerLabelA.setBackground(new Color(50, 50, 50));
         answerLabelA.setForeground(new Color(25,255,0));
-        answerLabelA.setFont(new Font("HonMincho", Font.PLAIN, 35));
+        answerLabelA.setFont(new Font(fontHM, Font.PLAIN, 35));
 
 
         //answer_labelB
         answerLabelB.setBounds(125, 200, 500, 100);
         answerLabelB.setBackground(new Color(50, 50, 50));
         answerLabelB.setForeground(new Color(25,255,0));
-        answerLabelB.setFont(new Font("HonMincho", Font.PLAIN, 35));
+        answerLabelB.setFont(new Font(fontHM, Font.PLAIN, 35));
 
 
         //answer_labelC
         answerLabelC.setBounds(125, 300, 500, 100);
         answerLabelC.setBackground(new Color(50, 50, 50));
         answerLabelC.setForeground(new Color(25,255,0));
-        answerLabelC.setFont(new Font("HonMincho", Font.PLAIN, 35));
+        answerLabelC.setFont(new Font(fontHM, Font.PLAIN, 35));
 
 
         //answer_labelD
         answerLabelD.setBounds(125, 400, 500, 100);
         answerLabelD.setBackground(new Color(50, 50, 50));
         answerLabelD.setForeground(new Color(25,255,0));
-        answerLabelD.setFont(new Font("HonMincho", Font.PLAIN, 35));
+        answerLabelD.setFont(new Font(fontHM, Font.PLAIN, 35));
 
         //timer for seconds
         secondsLeft.setBounds(535,510,100,100); //100x100 is a box
         secondsLeft.setBackground(new Color(25,25,25));
         secondsLeft.setForeground(new Color(255,0,0)); //red Foreground
-        secondsLeft.setFont(new Font("Dialog", Font.BOLD, 60));
+        secondsLeft.setFont(new Font(fontD, Font.BOLD, 60));
         secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
         secondsLeft.setOpaque(true);
-        secondsLeft.setHorizontalAlignment(JTextField.CENTER);
+        secondsLeft.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         secondsLeft.setText(String.valueOf(seconds)); //need to convert to string so we can display it as seconds
 
         //display time label (optional, just makes the timer clearer)
         timeLabel.setBounds(535, 472, 100, 25);
         timeLabel.setBackground(new Color (50,50,50)); //matches frame color
         timeLabel.setForeground(new Color(255,0,0));
-        timeLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
-        timeLabel.setHorizontalAlignment(JTextField.CENTER);
+        timeLabel.setFont(new Font(fontD, Font.PLAIN, 16));
+        timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeLabel.setText("Timer");
 
         //display number correct
@@ -193,18 +193,18 @@ public class Quiz implements ActionListener {
         numberRight.setBounds(225, 225, 200, 100);
         numberRight.setBackground(new Color(25,25,25));
         numberRight.setForeground(new Color(25,255,0));
-        numberRight.setFont(new Font("Dialog", Font.BOLD, 50)); //will want a big size for results
+        numberRight.setFont(new Font(fontD, Font.BOLD, 50)); //will want a big size for results
         numberRight.setBorder(BorderFactory.createBevelBorder(1));
-        numberRight.setHorizontalAlignment(JTextField.CENTER);
+        numberRight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numberRight.setEditable(false); //definitely don't want folks cheating
 
         //display label for number right
         percentage.setBounds(225,325, 200, 100);
         percentage.setBackground(new Color(25,25,25));
         percentage.setForeground(new Color(25,255,0));
-        percentage.setFont(new Font("Dialog", Font.BOLD, 50));
+        percentage.setFont(new Font(fontD, Font.BOLD, 50));
         percentage.setBorder(BorderFactory.createBevelBorder(1));
-        percentage.setHorizontalAlignment(JTextField.CENTER);
+        percentage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         percentage.setEditable(false);
 
 
@@ -326,29 +326,23 @@ public class Quiz implements ActionListener {
 
         //before next question, revert the colors
         //but need to time it so its not showing red on the next question
-        Timer pause = new Timer(2000, new ActionListener() {  //named pause cause its timing it before next question
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                //change answers back to green
-                answerLabelA.setForeground(new Color(25,255,0));
-                answerLabelB.setForeground(new Color(25,255,0));
-                answerLabelC.setForeground(new Color(25,255,0));
-                answerLabelD.setForeground(new Color(25,255,0));
+        Timer pause = new Timer(2000, e -> {
+            //change answers back to green
+            answerLabelA.setForeground(new Color(25,255,0));
+            answerLabelB.setForeground(new Color(25,255,0));
+            answerLabelC.setForeground(new Color(25,255,0));
+            answerLabelD.setForeground(new Color(25,255,0));
                 
-                //reset answer
-                answer = ' ';
-                seconds = 10;
-                secondsLeft.setText(String.valueOf(seconds));
-                buttonA.setEnabled(true);
-                buttonB.setEnabled(true);
-                buttonC.setEnabled(true);
-                buttonD.setEnabled(true);
-                index++;
-                nextQuestion();
+            //reset answer
+            answer = ' ';
+            seconds = 10;
+            secondsLeft.setText(String.valueOf(seconds));
+            buttonA.setEnabled(true);                buttonB.setEnabled(true);
+            buttonC.setEnabled(true);
+            buttonD.setEnabled(true);
+            index++;
+            nextQuestion();
 
-            }
         });
         //only want timer to activate once, so call method to help:
         pause.setRepeats(false); //only executes once then
